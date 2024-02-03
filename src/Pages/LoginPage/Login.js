@@ -1,9 +1,10 @@
 import React, { Fragment, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import "./Login.css";
 
 const Login = () => {
   const [userDetail, setUserDetail] = useState({ email: "", password: "" });
-  // const [isDisable, setIsDisable] = useState(true);
+  const navigate = useNavigate();
 
   const onChangeHandler = (event, field) => {
     setUserDetail((prev) => ({ ...prev, [field]: event.target.value }));
@@ -11,12 +12,29 @@ const Login = () => {
 
   const isDisable = userDetail.email === '' || userDetail.password === '' || userDetail.password.length < 8;
 
-  const submitHandler = () => {
+  const submitHandler = async(event) => {
+    event.preventDefault();
+    const data = userDetail;
+    console.log("DATA = ", data);
+    const response = await fetch('http://localhost:80/login', {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    console.log("RESult = ", result);
+    navigate('/home')
+
   }
 
   return (
     <Fragment>
-      <form className="contain" onSubmit={submitHandler}>
+      <form className="contain" onSubmit={(e) => submitHandler(e)}>
         <input
           placeholder="Email"
           value={userDetail.email}
