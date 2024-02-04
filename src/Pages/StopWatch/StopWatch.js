@@ -3,7 +3,7 @@ import classes from "./StopWatch.module.css"
 
 const StopWatch = () => {
 
-    const [time, setTime] = useState({hour: 0, min: 0, sec: 57});
+    const [time, setTime] = useState({hour: 0, min: 0, sec: 0});
     const [running, setRunning] = useState(false);
 
     useEffect (() => {
