@@ -10,6 +10,25 @@
     position: fixed;
     height: 50px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 0 20px; /* Add padding on the left and right */
+    padding: 0 20px;
     box-sizing: border-box;
+}
+
+.placeholder {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.btn {
+    color: white;
+    padding: 0px;
+    background-color: #e5c40096;
+    width: 100px;
+    margin: 0;
+    z-index: 1000;
+    margin-left: -20px;
+}
+
+.menuBtn {
+    margin-left: -20px;
 }

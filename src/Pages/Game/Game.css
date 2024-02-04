@@ -1,0 +1,19 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap : 10px;
+}
+
+.square {
+  height: 100px;
+  width: 100px;
+  color: black;
+  background-color: antiquewhite;
+  cursor: pointer;
+}

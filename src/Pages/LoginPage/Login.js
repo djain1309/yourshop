@@ -1,10 +1,14 @@
 import React, { Fragment, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import "./Login.css";
+import classes from "./Login.module.css";
+import { useDispatch } from "react-redux";
+import { authenticate } from "../../state/counter/authenticationSlice";
 
 const Login = () => {
   const [userDetail, setUserDetail] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
 
   const onChangeHandler = (event, field) => {
     setUserDetail((prev) => ({ ...prev, [field]: event.target.value }));
@@ -26,6 +30,9 @@ const Login = () => {
       },
       body: JSON.stringify(data)
     });
+    if (response.ok) {
+      dispatch(authenticate())
+    }
     const result = await response.json();
     console.log("RESult = ", result);
     navigate('/home')
@@ -34,7 +41,7 @@ const Login = () => {
 
   return (
     <Fragment>
-      <form className="contain" onSubmit={(e) => submitHandler(e)}>
+      <form className={classes.contain} onSubmit={(e) => submitHandler(e)}>
         <input
           placeholder="Email"
           value={userDetail.email}
@@ -52,7 +59,8 @@ const Login = () => {
           name="password"
           onChange={(e) => onChangeHandler(e, 'password')}
         />
-        <button
+        <button 
+            className={classes.btn}
             disabled = {isDisable}
             >Submit</button>
       </form>

@@ -19,7 +19,7 @@ input {
     border-radius: 5px;
 }
 
-button {
+.btn {
     color: white;
     border: none;
     background-color: #45a049;
@@ -30,11 +30,11 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:disabled {
+.btn:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
 
-button:hover:not(:disabled) {
+.btn:hover:not(:disabled) {
     background-color: #4CAF50;
 }
