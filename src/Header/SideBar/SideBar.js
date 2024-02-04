@@ -17,7 +17,7 @@ const SideBar = ({onToggle}) => {
         <ul className={classes.sidebarList}>
         <li onClick={(e) => {onClickMenuHandler(e, '/tic-tac-toe-game')}}>Tic-tac-toe</li>
         <li onClick={(e) => {onClickMenuHandler(e, '/tic-practice-game')}}>Tic-Practice</li>
-        <li>Toys</li>
+        <li onClick={(e) => {onClickMenuHandler(e, '/product-list')}}>ProductList</li>
         <li>Utensils</li>
         <li>Grocery</li>
         <li>Fashion</li>

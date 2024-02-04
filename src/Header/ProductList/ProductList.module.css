@@ -1,0 +1,67 @@
+/* .list {
+    width: 100vw;
+    display: inline-grid;
+    align-content: center;
+} */
+
+.productlist {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust column width as needed */
+    grid-auto-rows: minmax(100px, auto); /* Adjust row height dynamically */
+    gap: 10px;
+    align-items: start; /* This aligns items to the start of the grid area */
+    overflow: auto; /* Adds scroll if content overflows */
+    text-align: center;
+}
+
+.list {
+    width: 100vw;
+    overflow: overlay; /* Hide the overflow */
+    position: relative; /* Position relative for absolute positioned children */
+}
+
+.categoryContainer {
+    margin-bottom: 20px; /* Add space between categories */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.categoryTitle {
+    margin: 10px 0; /* Add some space above and below the category title */
+}
+
+.carousel {
+    display: flex;
+    overflow: hidden; /* Ensure the overflow content is hidden */
+}
+
+.carouselContent {
+    display: flex;
+    transition: transform 0.3s ease-out; /* Smooth transition for the carousel */
+}
+
+.arrow {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    z-index: 100;
+}
+
+.leftArrow {
+    left: 10px;
+}
+
+.rightArrow {
+    right: 10px;
+}
+
+.productCardContainer {
+    flex: 0 0 auto; /* Don't grow, don't shrink, base width on content */
+    width: 200px; /* Width of each product card */
+    margin-right: 10px; /* Add some space between cards */
+}
