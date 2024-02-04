@@ -1,0 +1,23 @@
+.watch {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    font-size: large;
+    justify-content: center;
+    align-items: center;
+}
+
+h3 {
+    text-shadow: 1px -1px 1px;
+}
+
+button {
+    border: 0.5px #ccc solid;
+    height: 50px;
+    width: 80px;
+    background-color: antiquewhite;
+    box-sizing: border-box;
+    box-shadow: 1px 0px 5px 0px;
+    border-radius: 3px;
+    margin: 10px;
+}

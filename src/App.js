@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import TickGame from './Pages/Game/TicTacToe';
 import Game from './Pages/Game/TTT';
 import ProductList from './Header/ProductList/ProductList';
+import StopWatch from './Pages/StopWatch/StopWatch';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={ <Login />}/>
           <Route path='/login' element={ <Login />}/>
+          <Route path='/stop-watch' element={ <StopWatch />} />
           <Route path='/product-list' element={ <ProductList />}/>
           <Route path='/tic-tac-toe-game' element={ <TickGame />} />
           <Route path='/tic-practice-game' element={ <Game />} />

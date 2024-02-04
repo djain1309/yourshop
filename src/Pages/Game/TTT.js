@@ -1,64 +1,69 @@
-import React, { useState } from 'react';
-import './TTT.module.css';
+import React, { useState } from "react";
+import classes from "./TTT.module.css";
 
-const Square = ({ value, onClick }) => (
-  <button className="square" onClick={onClick}>
-    {value}
-  </button>
-);
-
-const Board = ({ squares, onClick }) => (
-  <div className="board">
-    {squares.map((square, i) => (
-      <Square key={i} value={square} onClick={() => onClick(i)} />
-    ))}
-  </div>
-);
-
-const calculateWinner = (squares) => {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
+const Square = ({ value, onClickHandler }) => {
+  return <button className={classes.cell} onClick={onClickHandler}>{value}</button>;
 };
 
-const Game = () => {
-  const [squares, setSquares] = useState(Array(9).fill(null));
-  const [xIsNext, setXIsNext] = useState(true);
-  
-  const winner = calculateWinner(squares);
-
-  const handleClick = (i) => {
-    if (squares[i] || winner) return;
-
-    const newSquares = squares.slice();
-    console.log("newSquares ",newSquares)
-    newSquares[i] = xIsNext ? 'X' : 'O';
-    setSquares(newSquares);
-    setXIsNext(!xIsNext);
-  };
+const Board = ({ squares, onClickHandler }) => {
 
   return (
-    <div className="game">
-      <Board squares={squares} onClick={handleClick} />
-      <div className="info">
-        <div>{winner ? 'Winner: ' + winner : 'Next player: ' + (xIsNext ? 'X' : 'O')}</div>
-      </div>
+    <div className={classes.square}>
+      {squares.map((square, i) => (
+        <Square value={square} onClickHandler={() => onClickHandler(i)} key={i} />
+      ))}
     </div>
   );
 };
 
-export default Game;
+const findWinner = (squares) => {
+
+    const matches = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+
+        [0, 4, 8],
+        [2, 4, 6],
+    ];
+    let temp = [...squares];
+
+    for (let i = 0; i < matches.length; i++) {
+        let [a, b, c] = matches[i];
+        if (temp[a] && temp[a] === temp[b] && temp[a] === temp[c]) {
+            return temp[a];
+        }
+    }
+    return null;
+}
+
+const Tick = () => {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+  const [xIsNext, setXIsNext] = useState(false);
+
+  const winner = findWinner(squares);
+
+  const onClickHandler = (i) => {
+    if (winner || squares[i]) return;
+    const temp = [...squares];
+    temp[i] = xIsNext ? 'X' : 'O';
+    setSquares(temp);
+    setXIsNext(!xIsNext); 
+  };
+
+  return (
+    <div className={classes.board}>
+      <h2>Click</h2>
+      <Board squares={squares} onClickHandler={onClickHandler} />
+
+        {winner ? (`Winner : ${winner} `) : `Next Player : ${xIsNext ? 'X' : 'O'}` }
+
+    </div>
+  );
+};
+
+export default Tick;
